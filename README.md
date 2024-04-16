@@ -55,14 +55,26 @@ circom circuits/sha256.circom --r1cs -o sha256_js
 node sha256_js/generate_witness.js sha256_js/sha256.wasm input.json sha256_js/witness.wtns
 ```
 
-## Generate Prover Key
+## Generate Prover Keys
 
 ```bash
 snarkjs groth16 setup sha256_js/sha256.r1cs ZKSetup/pot16_final.ptau sha256_js/prover_key.zkey
 ```
 
-## Generate Verification Key
+## Generate Verification Keys
 
 ```bash
 snarkjs zkey export verificationkey sha256_js/prover_key.zkey sha256_js/verification_key.json
+```
+
+## Generate Proofs
+
+```bash
+snarkjs groth16 prove sha256_js/prover_key.zkey sha256_js/witness.wtns sha256_js/proof.json sha256_js/public.json
+```
+
+## Verify Proofs
+
+```bash
+snarkjs groth16 verify sha256_js/verification_key.json sha256_js/public.json sha256_js/proof.json
 ```
