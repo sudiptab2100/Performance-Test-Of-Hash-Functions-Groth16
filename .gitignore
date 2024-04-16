@@ -1,3 +1,4 @@
 node_modules/
 ZKSetup/
 */prover_key.zkey
+*/verification_key.json

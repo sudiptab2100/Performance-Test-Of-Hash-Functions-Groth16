@@ -60,3 +60,9 @@ node sha256_js/generate_witness.js sha256_js/sha256.wasm input.json sha256_js/wi
 ```bash
 snarkjs groth16 setup sha256_js/sha256.r1cs ZKSetup/pot16_final.ptau sha256_js/prover_key.zkey
 ```
+
+## Generate Verification Key
+
+```bash
+snarkjs zkey export verificationkey sha256_js/prover_key.zkey sha256_js/verification_key.json
+```
