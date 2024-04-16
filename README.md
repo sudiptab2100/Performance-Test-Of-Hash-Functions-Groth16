@@ -14,7 +14,7 @@ This is a performance test of the prover side of the Groth16 proof system for ha
 ### Start the Ceremony
 
 ```bash
-mkdir ZKSetup && snarkjs powersoftau new bn128 12 ZKSetup/pot12_0000.ptau -v
+mkdir ZKSetup && snarkjs powersoftau new bn128 16 ZKSetup/pot16_0000.ptau -v
 ```
 
 ### Contribution to the Ceremony
@@ -22,19 +22,19 @@ mkdir ZKSetup && snarkjs powersoftau new bn128 12 ZKSetup/pot12_0000.ptau -v
 First contribution
 
 ```bash
-snarkjs powersoftau contribute ZKSetup/pot12_0000.ptau ZKSetup/pot12_0001.ptau --name="First contribution" -v
+snarkjs powersoftau contribute ZKSetup/pot16_0000.ptau ZKSetup/pot16_0001.ptau --name="First contribution" -v
 ```
 
 Final contribution
 
 ```bash
-snarkjs powersoftau prepare phase2 ZKSetup/pot12_0001.ptau ZKSetup/pot12_final.ptau -v
+snarkjs powersoftau prepare phase2 ZKSetup/pot16_0001.ptau ZKSetup/pot16_final.ptau -v
 ```
 
 ### Verify the Ceremony
 
 ```bash
-snarkjs powersoftau verify ZKSetup/pot12_final.ptau
+snarkjs powersoftau verify ZKSetup/pot16_final.ptau
 ```
 
 ## Generate WASM files
