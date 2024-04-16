@@ -48,3 +48,9 @@ circom circuits/sha256.circom --wasm
 ```bash
 circom circuits/sha256.circom --r1cs -o sha256_js
 ```
+
+## Generate witness files
+
+```bash
+node sha256_js/generate_witness.js sha256_js/sha256.wasm input.json sha256_js/witness.wtns
+```
