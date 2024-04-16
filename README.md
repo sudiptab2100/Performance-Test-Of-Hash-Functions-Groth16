@@ -46,5 +46,5 @@ circom circuits/sha256.circom --wasm
 ## Generate R1CS files
 
 ```bash
-circom circuits/sha256.circom --r1cs --wasm -o sha256_js
+circom circuits/sha256.circom --r1cs -o sha256_js
 ```

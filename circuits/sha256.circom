@@ -19,4 +19,4 @@ template TestSHA256(nBits) {
     }
 }
 
-component main = TestSHA256(10);
+component main = TestSHA256(512);
