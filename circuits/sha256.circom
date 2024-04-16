@@ -1,22 +1,16 @@
 pragma circom 2.0.0;
 
-include "../node_modules/circomlib/circuits/sha256/sha256.circom";
+include "../node_modules/circomlib/circuits/sha256/sha256_2.circom";
 
-template TestSHA256(nBits) {
-    signal input preImage[nBits];
-    signal output hash[256];
+template TestSHA256() {
+    signal input preImage[2];
+    signal output hash;
     
-    component hasher = Sha256(nBits);
-    for(var i = 0; i < nBits; i++) {
-        var s = preImage[i];
-        s * (1 - s) === 0; // Assert that s is a bit
-        
-        hasher.in[i] <== preImage[i];
-    }
+    component hasher = Sha256_2();
+    hasher.a <== preImage[0];
+    hasher.b <== preImage[1];
     
-    for(var i = 0; i < 256; i++) {
-        hash[i] <== hasher.out[i];
-    }
+    hash <== hasher.out;
 }
 
-component main = TestSHA256(512);
+component main = TestSHA256();

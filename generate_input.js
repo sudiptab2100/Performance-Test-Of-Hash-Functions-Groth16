@@ -3,14 +3,15 @@ const fs = require('fs');
 function generateRandomArray(k) {
     let arr = [];
     for(let i = 0; i < k; i++) {
-        arr.push(Math.round(Math.random()));
+        let randomNum = BigInt('0x' + require('crypto').randomBytes(27).toString('hex'));
+        arr.push(randomNum.toString());
     }
     return arr;
 }
 
-nBits = 512;
-let arr = generateRandomArray(nBits);
-let data = {
+const nInputs = 2;
+const arr = generateRandomArray(nInputs);
+const data = {
     preImage: arr
 };
 
