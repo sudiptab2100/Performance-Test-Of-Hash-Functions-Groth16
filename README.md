@@ -37,9 +37,14 @@ snarkjs powersoftau prepare phase2 ZKSetup/pot12_0001.ptau ZKSetup/pot12_final.p
 snarkjs powersoftau verify ZKSetup/pot12_final.ptau
 ```
 
+## Generate WASM files
+
+```bash
+circom circuits/sha256.circom --wasm
+```
+
 ## Generate R1CS files
 
 ```bash
-mkdir R1CS
-circom circuits/sha256.circom --r1cs --wasm -o R1CS
+circom circuits/sha256.circom --r1cs --wasm -o sha256_js
 ```
