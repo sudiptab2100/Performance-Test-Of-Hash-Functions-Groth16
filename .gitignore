@@ -2,3 +2,4 @@ node_modules/
 ZKSetup/
 *_js/*
 input.json
+results/*json
