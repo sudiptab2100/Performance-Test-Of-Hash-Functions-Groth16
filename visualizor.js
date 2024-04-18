@@ -19,6 +19,34 @@ async function generateBarGraph(labels, data, path, label) {
                 }),
                 borderWidth: 5
             }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            size: 25 // Increase legend font size
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        font: {
+                            size: 20 // Increase y-axis tick font size
+                        }
+                    }
+                },
+                x: {
+                    ticks: {
+                        font: {
+                            size: 25 // Increase x-axis tick font size
+                        }
+                    }
+                }
+            }
         }
     });
     
