@@ -10,6 +10,14 @@ This is a performance test of the prover side of the Groth16 proof system for ha
 ## Requirements
 
 - Circom: 2.1.8
+- NodeJS: 20.10.0
+- SnarkJS: 0.7.3
+
+## Install Dependencies
+
+```bash
+npm install
+```
 
 ## Trusted Setup Ceremony (powersoftau)
 
