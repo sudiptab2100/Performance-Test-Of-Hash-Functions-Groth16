@@ -19,23 +19,23 @@ Groth16 has constant proof size and verification time. But the prover side has a
 
 ### WASM File Sizes
 
-<p align="center"> <img src="./results/plots/wasm_sizes.png" width="500" height="300" /> </p>
+<p align="center" style="background-color:white;"> <img src="./results/plots/wasm_sizes.png"/> </p>
 
 ### R1CS File Sizes
 
-<p align="center"> <img src="./results/plots/r1cs_sizes.png" width="500" height="300" /> </p>
+<p align="center" style="background-color:white;"> <img src="./results/plots/r1cs_sizes.png"/> </p>
 
 ### Witness File Sizes
 
-<p align="center"> <img src="./results/plots/witness_sizes.png" width="500" height="300" /> </p>
+<p align="center" style="background-color:white;"> <img src="./results/plots/witness_sizes.png"/> </p>
 
 ### Prover Key Sizes
 
-<p align="center"> <img src="./results/plots/zkey_sizes.png" width="500" height="300" /> </p>
+<p align="center" style="background-color:white;"> <img src="./results/plots/zkey_sizes.png"/> </p>
 
 ### Prover Runtimes
 
-<p align="center"> <img src="./results/plots/runtimes.png" width="500" height="300" /> </p>
+<p align="center" style="background-color:white;"> <img src="./results/plots/runtimes.png"/> </p>
 
 ## Requirements
 
