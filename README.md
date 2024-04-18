@@ -43,10 +43,18 @@ snarkjs powersoftau verify ZKSetup/pot16_final.ptau
 circom circuits/sha256.circom --wasm
 ```
 
+```bash
+circom circuits/mimc.circom --wasm
+```
+
 ## Generate R1CS files
 
 ```bash
 circom circuits/sha256.circom --r1cs -o sha256_js
+```
+
+```bash
+circom circuits/mimc.circom --r1cs -o mimc_js
 ```
 
 ## Generate witness files
@@ -55,10 +63,18 @@ circom circuits/sha256.circom --r1cs -o sha256_js
 node sha256_js/generate_witness.js sha256_js/sha256.wasm input.json sha256_js/witness.wtns
 ```
 
+```bash
+node mimc_js/generate_witness.js mimc_js/mimc.wasm input.json mimc_js/witness.wtns
+```
+
 ## Generate Prover Keys
 
 ```bash
 snarkjs groth16 setup sha256_js/sha256.r1cs ZKSetup/pot16_final.ptau sha256_js/prover_key.zkey
+```
+
+```bash
+snarkjs groth16 setup mimc_js/mimc.r1cs ZKSetup/pot16_final.ptau mimc_js/prover_key.zkey
 ```
 
 ## Generate Verification Keys
@@ -67,14 +83,26 @@ snarkjs groth16 setup sha256_js/sha256.r1cs ZKSetup/pot16_final.ptau sha256_js/p
 snarkjs zkey export verificationkey sha256_js/prover_key.zkey sha256_js/verification_key.json
 ```
 
+```bash
+snarkjs zkey export verificationkey mimc_js/prover_key.zkey mimc_js/verification_key.json
+```
+
 ## Generate Proofs
 
 ```bash
 snarkjs groth16 prove sha256_js/prover_key.zkey sha256_js/witness.wtns sha256_js/proof.json sha256_js/public.json
 ```
 
+```bash
+snarkjs groth16 prove mimc_js/prover_key.zkey mimc_js/witness.wtns mimc_js/proof.json mimc_js/public.json
+```
+
 ## Verify Proofs
 
 ```bash
 snarkjs groth16 verify sha256_js/verification_key.json sha256_js/public.json sha256_js/proof.json
+```
+
+```bash
+snarkjs groth16 verify mimc_js/verification_key.json mimc_js/public.json mimc_js/proof.json
 ```
