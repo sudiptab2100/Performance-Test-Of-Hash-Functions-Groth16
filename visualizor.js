@@ -13,7 +13,11 @@ async function generateBarGraph(labels, data, path, label) {
             datasets: [{
                 label: label,
                 data: data,
-                borderWidth: 1
+                backgroundColor: labels.map((label, index) => {
+                    const hue = Math.round(360 * index / labels.length);
+                    return `hsl(${hue}, 100%, 50%)`;
+                }),
+                borderWidth: 5
             }]
         },
         options: {
