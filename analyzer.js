@@ -2,9 +2,13 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const { exit } = require('process');
 
-async function runC(command, times) {
+async function runC(hasher, times) {
+    hasher_js = hasher + '_js';
+    witness_command = `node ${hasher_js}/generate_witness.js ${hasher_js}/${hasher}.wasm input.json ${hasher_js}/witness.wtns`;
+    proof_command = `snarkjs groth16 prove ${hasher_js}/prover_key.zkey ${hasher_js}/witness.wtns ${hasher_js}/proof.json ${hasher_js}/public.json`;
     for(let i = 0; i < times; i++) {
-        await exec(command);
+        await exec(witness_command)
+        await exec(proof_command);
     }
 }
 
@@ -12,7 +16,7 @@ function fileSize(filePath) {
     const stats = fs.statSync(filePath);
     const fileSizeInBytes = stats.size;
     const fileSizeInKB = fileSizeInBytes / 1024;
-    return parseInt(fileSizeInKB);
+    return fileSizeInKB;
 }
 
 async function main() {
@@ -20,8 +24,13 @@ async function main() {
     hasher_names = ['mimc', 'poseidon', 'pedersen', 'sha256'];
     
     const args = process.argv.slice(2);
-    if(args.length > 0) {
+    if(args.length > 0 && args.length <= 2) {
         hasher = args[0];
+        if(args.length == 2) runs = parseInt(args[1]);
+        if(runs <= 0) {
+            console.log("Invalid runs")
+            exit(1);
+        }
         if(hasher_names.includes(hasher)) {
             console.log(`Running ${hasher} hasher`);
         } else {
@@ -29,14 +38,13 @@ async function main() {
             exit(1);
         }
     } else {
-        console.log('Please provide the hasher name');
+        console.log('Provide command line arguments | arg[0]: hasher, arg[1]: runs');
         exit(1);
     }
     
     hasher_js = hasher + '_js';
-    command = `snarkjs groth16 prove ${hasher_js}/prover_key.zkey ${hasher_js}/witness.wtns ${hasher_js}/proof.json ${hasher_js}/public.json`;
     const start = new Date();
-    await runC(command, runs);
+    await runC(hasher, runs);
     const end = new Date();
     
     const runtime = end - start;
