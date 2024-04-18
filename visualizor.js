@@ -19,13 +19,6 @@ async function generateBarGraph(labels, data, path, label) {
                 }),
                 borderWidth: 5
             }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
         }
     });
     
@@ -36,7 +29,7 @@ async function generateBarGraph(labels, data, path, label) {
 }
 
 if (!fs.existsSync('results/plots')) fs.mkdirSync('results/plots');
-hasher_names = ['mimc', 'poseidon', 'pedersen', 'sha256'];
+hasher_names = ['sha256', 'mimc', 'poseidon', 'pedersen'];
 
 wasm_sizes = [];
 r1cs_sizes = [];
