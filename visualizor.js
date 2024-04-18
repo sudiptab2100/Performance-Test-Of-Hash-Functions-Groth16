@@ -3,7 +3,7 @@ const { createCanvas } = require('canvas');
 const fs = require('fs');
 Chart.register(...registerables);
 
-async function generateBarGraph(labels, data, path) {
+async function generateBarGraph(labels, data, path, label) {
     const canvas = createCanvas(800, 600);
     const ctx = canvas.getContext('2d');
     new Chart(ctx, {
@@ -11,7 +11,7 @@ async function generateBarGraph(labels, data, path) {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Size (KB)',
+                label: label,
                 data: data,
                 borderWidth: 1
             }]
@@ -35,12 +35,18 @@ if (!fs.existsSync('results/plots')) fs.mkdirSync('results/plots');
 hasher_names = ['mimc', 'poseidon', 'pedersen', 'sha256'];
 
 wasm_sizes = [];
+r1cs_sizes = [];
 witness_sizes = [];
+zkey_sizes = [];
 for(let i = 0; i < hasher_names.length; i++) {
     const data = JSON.parse(fs.readFileSync(`results/${hasher_names[i]}.json`, 'utf8'));
     wasm_sizes.push(data.wasm_size);
+    r1cs_sizes.push(data.r1cs_size);
     witness_sizes.push(data.witness_size);
+    zkey_sizes.push(data.zkey_size);
 }
 
-generateBarGraph(hasher_names, wasm_sizes, 'results/plots/wasm_sizes.png');
-generateBarGraph(hasher_names, witness_sizes, 'results/plots/witness_sizes.png');
+generateBarGraph(hasher_names, wasm_sizes, 'results/plots/wasm_sizes.png', label='Wasm Size (KB)');
+generateBarGraph(hasher_names, r1cs_sizes, 'results/plots/r1cs_sizes.png', label='R1CS Size (KB)');
+generateBarGraph(hasher_names, witness_sizes, 'results/plots/witness_sizes.png', label='Witness Size (KB)');
+generateBarGraph(hasher_names, zkey_sizes, 'results/plots/zkey_sizes.png', label='Prover Key Size (KB)');
