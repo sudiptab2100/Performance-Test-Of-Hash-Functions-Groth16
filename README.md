@@ -7,6 +7,36 @@ This is a performance test of the prover side of the Groth16 proof system for ha
 - Poseidon
 - Pedersen
 
+Groth16 has constant proof size and verification time. But the prover side has a variable time and space complexity depending on the circuit complexity. So, we will analyze the prover side performance of the Groth16 proof system for the above hash functions on the following parameters:
+
+- WASM File Size
+- R1CS File Size
+- Witness File Size
+- Prover Key Size
+- Prover Time
+
+## Results
+
+### WASM File Sizes
+
+<p align="center"> <img src="./results/plots/wasm_sizes.png" /> </p>
+
+### R1CS File Sizes
+
+<p align="center"> <img src="./results/plots/r1cs_sizes.png" /> </p>
+
+### Witness File Sizes
+
+<p align="center"> <img src="./results/plots/witness_sizes.png" /> </p>
+
+### Prover Key Sizes
+
+<p align="center"> <img src="./results/plots/zkey_sizes.png" /> </p>
+
+### Prover Runtimes
+
+<p align="center"> <img src="./results/plots/runtimes.png" /> </p>
+
 ## Requirements
 
 - Circom: 2.1.8
@@ -171,4 +201,30 @@ snarkjs groth16 verify poseidon_js/verification_key.json poseidon_js/public.json
 
 ```bash
 snarkjs groth16 verify pedersen_js/verification_key.json pedersen_js/public.json pedersen_js/proof.json
+```
+
+## Analysis
+
+**Command**: `node analysis.js [hash_function] [number_of_iterations]`
+
+```bash
+node analysis.js sha256 10
+```
+
+```bash
+node analysis.js mimc 10
+```
+
+```bash
+node analysis.js poseidon 10
+```
+
+```bash
+node analysis.js pedersen 10
+```
+
+## Plot Analyzed Data
+
+```bash
+node visualizor.js
 ```
